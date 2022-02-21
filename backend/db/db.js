@@ -1,18 +1,15 @@
-import mongoose from "mongoose";
+import mongose from "mongoose";
 
-const dbConnection = () => {
-    try {
-        mongoose.connect(process.env.DB_CONECTION, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log("connection with MongoDB: OK");
-    } catch (e) {
-        console.log("Error connecting to MongoDB: \n ", e);
-    }
-
-
-
+const dbConnection = async () => {
+  try {
+    await mongose.connect(process.env.DB_CONNECTION, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connection with MongoDB: OK!");
+  } catch (error) {
+    console.log("Error connecting to MongoDB: \n", error);
+  }
 };
 
 export default { dbConnection };
