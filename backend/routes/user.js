@@ -13,6 +13,8 @@ router.post(
   controller.registerUser
 );
 router.get("/listUser/:name?", controller.listUser);
-router.post("/login", controller.login);
+router.get("/listUserAdmin/:name?", controller.listUserAdmin);
+router.put("/updateUser", userMdd.validData, controller.updateUser);
+router.put("/deleteUser/:_id", controller.deleteUser);
 
 export default router;

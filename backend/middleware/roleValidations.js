@@ -15,7 +15,7 @@ const validateData = (req, res, next) => {
 const validRole = async (req, res, next) => {
   const role = await model.findOne({ name: "user" });
 
-  if (role) return res.status(404).send({ message: "Role not found" });
+  if (!role) return res.status(404).send({ message: "Role not found" });
 
   req.body.role = role._id;
 
@@ -30,4 +30,4 @@ const existingRole = async (req, res, next) => {
   if (next) next();
 };
 
-export default { validRole, validations };
+export default { validRole, validations, validateData };

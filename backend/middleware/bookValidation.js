@@ -28,4 +28,4 @@ const existingBook = async (req, res, next) => {
   if (next) next();
 };
 
-export default { validations, existingBook };
+export default { validations, existingBook, validateData };

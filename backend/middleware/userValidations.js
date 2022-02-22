@@ -5,7 +5,7 @@ const validations = (req, res, next) => {
   existingEmail(req, res, next);
 };
 
-const validData = (req, res) => {
+const validData = (req, res, next) => {
   if (!req.body.name || !req.body.email || !req.body.password)
     return res.status(400).send({ message: "Incomplete Data" });
   if (next) next();
@@ -20,4 +20,4 @@ const existingEmail = async (req, res, next) => {
   if (next) next();
 };
 
-export default { validations };
+export default { validations, validData, existingEmail };

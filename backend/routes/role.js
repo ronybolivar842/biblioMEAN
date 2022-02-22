@@ -6,5 +6,7 @@ const router = express.Router();
 
 router.post("/registerRole", roleMdd.validations, controller.registerRole);
 router.get("/listRole/:name?", controller.listRole);
+router.put("/updateRole", roleMdd.validateData, controller.updateRole);
+router.put("/deleteRole/:_id", controller.deleteRole);
 
 export default router;
