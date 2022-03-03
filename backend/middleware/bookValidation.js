@@ -1,11 +1,6 @@
 import model from "../models/book.js";
 
-const validations = async (req, res, next) => {
-  validateData(req, res);
-  existingBook(req, res, next);
-};
-
-const validateData = (req, res, next) => {
+const validateData = (req, res) => {
   if (
     !req.body.title ||
     !req.body.description ||
@@ -17,15 +12,18 @@ const validateData = (req, res, next) => {
   )
     return res.status(401).send({ message: "Incomplete data" });
 
-  if (next) next();
+  next();
 };
 
 const existingBook = async (req, res, next) => {
   const { title, author } = req.body;
-  let book = await model.findOne({ title, author });
-  if (book) return res.status(400).send({ message: "Book already exists" });
 
-  if (next) next();
+  let book = await model.findOne({ title, author });
+
+  if (book && req.body._id != book._id)
+    return res.status(400).send({ message: "Book already exists" });
+
+  next();
 };
 
-export default { validations, existingBook, validateData };
+export default { existingBook, validateData };

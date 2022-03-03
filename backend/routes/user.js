@@ -7,14 +7,15 @@ import roleMdd from "../middleware/roleValidations.js";
 const router = express.Router();
 
 router.post(
-  "/registerUser",
-  userMdd.validations,
+  "/register",
+  userMdd.validData,
+  userMdd.existingEmail,
   roleMdd.validRole,
   controller.registerUser
 );
-router.get("/listUser/:name?", controller.listUser);
-router.get("/listUserAdmin/:name?", controller.listUserAdmin);
-router.put("/updateUser", userMdd.validData, controller.updateUser);
-router.put("/deleteUser/:_id", controller.deleteUser);
+router.get("/list/:name?", controller.listUser);
+router.get("/listUsers/:name?", controller.listUserAdmin);
+router.put("/update", userMdd.validData, controller.updateUser);
+router.put("/delete/:_id", controller.deleteUser);
 
 export default router;
